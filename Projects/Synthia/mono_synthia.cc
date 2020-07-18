@@ -44,13 +44,13 @@ int main(int argc, char **argv)
     for(int ni=0; ni<nImages; ni++)
     {
         // Read image from file
-        im = cv::imread(string(argv[3])+"/RGB/"+vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED);
+        im = cv::imread(string(argv[3])+"/"+vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED);
         double tframe = vTimestamps[ni];
 
         if(im.empty())
         {
             cerr << endl << "Failed to load image at: "
-                 << string(argv[3]) << "/RGB/" << vstrImageFilenames[ni] << endl;
+                 << string(argv[3]) << "/" << vstrImageFilenames[ni] << endl;
             return 1;
         }
 
@@ -106,12 +106,12 @@ int main(int argc, char **argv)
 
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames, vector<double> &vTimestamps)
 {   
-    int numOfImagesToRun = 56;
-    int i = 46;
+    int numOfImagesToRun = 100;
+    int i = 0;
 
     while(i < numOfImagesToRun)
     {
-        double t=(double)(i-45);
+        double t=(double)(i);
         vTimestamps.push_back(t);
         stringstream imName;
         imName << std::setfill('0') << std::setw(6) << i << ".png";

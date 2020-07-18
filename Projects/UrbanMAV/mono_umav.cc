@@ -40,11 +40,12 @@ int main(int argc, char **argv)
     cout << "Images in the sequence: " << nImages << endl << endl;
 
     // Main loop
-    cv::Mat im;
+    cv::Mat im, temp;
     for(int ni=0; ni<nImages; ni++)
     {
         // Read image from file
-        im = cv::imread(string(argv[3])+"/MAV Images/"+vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED);
+        im = cv::imread(string(argv[3])+"/../vins_lines/data/UrbanMAV_subset/processed/sequence3_semiprocessed/ethz/images/"+vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED);
+        // cv::resize(temp, im, cv::Size(), 0.5, 0.5);
         double tframe = vTimestamps[ni];
 
         if(im.empty())
@@ -110,8 +111,8 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames, vecto
     ifstream f;
     f.open(gtPath.c_str());
     
-    int numOfImagesToRun = 500;
-    int i = 1;
+    int numOfImagesToRun = 4202;
+    int i = 3931;
 
     // skip first line
     string s0;
@@ -134,6 +135,6 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames, vecto
             imName >> sRGB;
             vstrImageFilenames.push_back(sRGB);
         }
-        i++;
+        i = i + 30;
     }
 }
